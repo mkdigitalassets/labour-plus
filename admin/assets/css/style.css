@@ -1,0 +1,682 @@
+:root {
+    --primary-blue: #3b82f6;
+    /* Modern Blue */
+    --dark-blue: #1e3a8a;
+    /* Deep Navy */
+    --sidebar-width: 260px;
+    --bg-main: #f1f5f9;
+    /* Subtle Gray */
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-main);
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* --- Top Navbar --- */
+.navbar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    /* Glass effect */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1040;
+    padding: 15px 30px;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--dark-blue) !important;
+    font-size: 1.4rem;
+}
+
+.badge-notification {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.6rem;
+    padding: 3px 6px;
+}
+
+/* --- Modern Sidebar --- */
+#sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: white;
+    padding-top: 80px;
+    /* Navbar ki space */
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1030;
+
+    /* --- New Requirement Changes --- */
+    overflow-y: auto;
+    /* Vertical scroll on kar di */
+    overflow-x: hidden;
+    /* Horizontal scroll band rakhi */
+    scrollbar-width: none;
+    /* Firefox ke liye scrollbar hide */
+    -ms-overflow-style: none;
+    /* IE aur Edge ke liye scrollbar hide */
+
+    /* Taki scroll karne par smooth feel ho */
+    scroll-behavior: smooth;
+
+    /* Neeche ke links ke liye thori extra space */
+    padding-bottom: 40px;
+}
+
+/* Chrome, Safari aur Opera ke liye scrollbar hide karna */
+#sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
+    color: #64748b;
+    /* Subtle text */
+    padding: 14px 25px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin: 4px 15px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary-blue);
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+.nav-link.active {
+    color: white;
+    background-color: var(--primary-blue);
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+}
+
+.nav-link i {
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+/* --- Main Content --- */
+#main-content {
+    margin-left: var(--sidebar-width);
+    padding: 110px 40px 40px;
+    /* Top padding for fixed nav */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.content-loading {
+    opacity: 0.5;
+    pointer-events: none;
+    /* Loading ke waqt click na ho sake */
+}
+
+/* --- Sleek KPI Cards --- */
+.card-kpi {
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    background: white;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-kpi:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-kpi::after {
+    /* Gradient accent */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+}
+
+.bg-income::after {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.bg-expense::after {
+    background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.bg-profit::after {
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.bg-pending::after {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.kpi-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* --- Modern Buttons --- */
+.btn-modern {
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-modern-primary {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.btn-modern-primary:hover {
+    background-color: #2563eb;
+    transform: compactY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-modern-outline {
+    background: white;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+}
+
+.btn-modern-outline:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+/* --- Tables --- */
+.table-modern {
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+}
+
+.table-modern table {
+    margin-bottom: 0;
+}
+
+.table-modern thead th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 15px 20px;
+    border: none;
+}
+
+.table-modern tbody td {
+    padding: 18px 20px;
+    color: #1e293b;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.table-modern tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    #sidebar {
+        left: -var(--sidebar-width);
+    }
+
+    #main-content {
+        margin-left: 0;
+        padding: 110px 20px 20px;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+}
+
+#sidebar {
+    background: #ffffff;
+    min-height: 100vh;
+    border-right: 1px solid #f1f5f9;
+}
+
+/* Icon Color & Circle Style */
+.nav-link i {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-right: 12px;
+    font-size: 1.1rem;
+}
+
+/* Professional Icon Palette */
+.icon-dashboard {
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.icon-tehsil {
+    background: #ecfdf5;
+    color: #10b981;
+}
+
+.icon-salary {
+    background: #fffbeb;
+    color: #f59e0b;
+}
+
+.icon-manager {
+    background: #f5f3ff;
+    color: #8b5cf6;
+}
+
+.icon-machine {
+    background: #f8fafc;
+    color: #64748b;
+}
+
+.icon-fuel {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+.icon-finance {
+    background: #f0fdfa;
+    color: #0d9488;
+}
+
+.icon-report {
+    background: #fdf2f8;
+    color: #db2777;
+}
+
+/* Dropdown Toggle Arrow */
+.nav-link {
+    color: #475569;
+    font-weight: 500;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    background: #f8fafc;
+    color: #3b82f6;
+}
+
+.dropdown-btn::after {
+    content: "\ea4e";
+    /* Remix Icon arrow down */
+    font-family: 'remixicon';
+    margin-left: auto;
+    font-size: 0.8rem;
+    transition: transform 0.3s;
+}
+
+.dropdown-btn[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+
+/* Sub-menu styling */
+.sub-menu {
+    list-style: none;
+    padding-left: 54px;
+    background: #fcfcfc;
+}
+
+.sub-menu a {
+    display: block;
+    padding: 8px 0;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.sub-menu a:hover {
+    color: #3b82f6;
+}
+
+/* In-valid (Red) border and shadow */
+/* Sirf un inputs par border show ho jin par humne manual classes lagayi hain */
+.form-control:not([required]).is-valid,
+.form-select:not([required]).is-valid {
+    border-color: #e0e6ed !important;
+    /* Default border color */
+    background-image: none !important;
+    /* Tick mark khatam */
+}
+
+/* Optional: Border focus color for non-required fields */
+.form-control:not([required]):focus {
+    border-color: #4361ee;
+    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+}
+
+/* Select field par focus karne par border change */
+.form-select:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Options ki padding aur appearance (Limited Support) */
+/* Select2 container ko dashboard ke mutabiq rounded banana */
+.select2-container--default .select2-selection--single {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    height: 45px !important;
+    /* height match karne ke liye */
+    padding-top: 8px !important;
+}
+
+/* Dropdown ke andar ke options ko modify karna */
+.select2-dropdown {
+    border: none !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+
+/* Jab input invalid (Red) ho */
+.is-invalid+.select2-container .select2-selection--single {
+    border-color: #dc3545 !important;
+}
+
+/* Buttons ko aik line mein rakhne ke liye */
+.action-buttons-wrapper {
+    max-width: 250px;
+    /* Aap apni marzi se width set kar sakte hain */
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
+    /* Scrollbar ke liye thori jagah */
+    scrollbar-width: thin;
+    /* Firefox ke liye */
+}
+
+/* Scrollbar ko khoobsurat aur chota banane ke liye (Chrome/Safari) */
+.action-buttons-wrapper::-webkit-scrollbar {
+    height: 4px;
+}
+
+.action-buttons-wrapper::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+/* Button ki base styling */
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    background: #f8fafc;
+    color: #64748b;
+}
+
+/* Individual Button Hovers */
+.view-btn:hover {
+    background: #e0e7ff;
+    color: #4338ca;
+    border-color: #c7d2fe;
+}
+
+.edit-btn:hover {
+    background: #fef3c7;
+    color: #b45309;
+    border-color: #fde68a;
+}
+
+.stock-btn:hover {
+    background: #dcfce7;
+    color: #15803d;
+    border-color: #bbf7d0;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+/* Container jahan scrollbar show karni hai */
+.master-table-container {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    /* Scrollbar aur table ke darmiyan thori jagah */
+}
+
+/* 1. Scrollbar ki overall width/height (Thin look) */
+.master-table-container::-webkit-scrollbar {
+    height: 5px;
+    /* Sirf 5px rakha hai taake barik nazar aaye */
+}
+
+/* 2. Scrollbar ka Track (Background) */
+.master-table-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    /* Halka gray background */
+    border-radius: 10px;
+}
+
+/* 3. Scrollbar ka Handle (Jo move hota hai) */
+.master-table-container::-webkit-scrollbar-thumb {
+    background: #abb1b8;
+    /* Thora dark gray taake nazar aaye */
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+/* 4. Hover karne par handle ka color change */
+.master-table-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+    /* Hover par thora aur dark */
+}
+
+/* Loader animation agar aap dena chahen */
+.btn-loader {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Animations Definition */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Mobile View adjustments */
+@media (max-width: 991px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+        /* Initial state: Hidden */
+        display: none;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        z-index: 9999;
+        /* Sirf itna z-index taake top pe rahe */
+    }
+
+    /* Jab active ho */
+    #sidebar.active {
+        display: block !important;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+
+}
+/* --- Table Styling for Ledger View --- */
+/* --- Screen View Fixes --- */
+.report-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #000;
+}
+
+#reportTable {
+    width: 100% !important;
+    min-width: 1300px;
+    border-collapse: collapse !important;
+    table-layout: fixed !important; 
+    background-color: #fff;
+}
+
+#reportTable th, #reportTable td {
+    border: 1px solid #000 !important;
+    padding: 4px 1px !important;
+    text-align: center;
+    font-size: 11px;
+    color: #000 !important;
+    white-space: nowrap;
+}
+
+/* Header Styling matching the image */
+#reportTable thead th {
+    background-color: #f2f2f2 !important;
+    font-weight: bold;
+}
+
+/* --- Printing Optimization (image_4e119b.png Style) --- */
+@media print {
+    @page { 
+        size: landscape; 
+        margin: 0.5cm; 
+    }
+
+    body { background: none !important; -webkit-print-color-adjust: exact !important; }
+
+    /* Hide non-essential elements */
+    header, .sidebar, .navbar, .no-print, .btn, .card-header, .footer-main, .ri-delete-bin-line {
+        display: none !important;
+    }
+
+    .report-scroll-wrapper { 
+        overflow: visible !important; 
+        width: 100% !important;
+    }
+
+    #reportTable {
+        width: 100% !important;
+        min-width: 100% !important;
+        table-layout: fixed !important;
+        border: 1.5pt solid #000 !important;
+    }
+
+    #reportTable th, #reportTable td {
+        border: 1pt solid #000 !important;
+        font-size: 8.5pt !important;
+        padding: 2px 1px !important;
+    }
+
+    /* Professional Blue Footer Bar */
+    .print-footer-bar {
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #1e3a8a !important; /* Dark Blue */
+        color: #fff !important;
+        padding: 6px 15px;
+        font-size: 10px;
+        font-weight: bold;
+        justify-content: space-between;
+        z-index: 9999;
+    }
+
+    .ntn-bar {
+        font-size: 10px;
+        font-weight: bold;
+        color: #000;
+    }
+
+    /* Main Title Box Style */
+    .main-title-box {
+        border: 2px solid #1e3a8a;
+        color: #1e3a8a;
+        border-radius: 4px;
+    }
+}
+
+/* Footer screen par chupa rahay */
+.print-footer-bar { display: none; }
